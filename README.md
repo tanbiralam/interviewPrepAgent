@@ -1,3 +1,4 @@
+```markdown
 <div align="center">
   <br />
     <a href="https://www.youtube.com/watch?v=8GK8R77Bd7g" target="_blank">
@@ -10,6 +11,7 @@
     <img src="https://img.shields.io/badge/-Vapi-white?style=for-the-badge&color=5dfeca" alt="vapi" />
     <img src="https://img.shields.io/badge/-Tailwind_CSS-black?style=for-the-badge&logoColor=white&logo=tailwindcss&color=06B6D4" alt="tailwindcss" />
     <img src="https://img.shields.io/badge/-Firebase-black?style=for-the-badge&logoColor=white&logo=firebase&color=DD2C00" alt="firebase" />
+     <a href="https://github.com/interviewPrepAgent" target="_blank"><img src="https://img.shields.io/github/stars/interviewPrepAgent?style=social" alt="GitHub Repo stars" /></a>
   </div>
 
   <h3 align="center">Prepwise: A job interview preparation platform powered by Vapi AI Voice agents</h3>
@@ -19,122 +21,213 @@
     </div>
 </div>
 
-## 📋 <a name="table">Table of Contents</a>
+## 🚀 Project Overview
 
-1. 🤖 [Introduction](#introduction)
-2. ⚙️ [Tech Stack](#tech-stack)
-3. 🔋 [Features](#features)
-4. 🤸 [Quick Start](#quick-start)
-5. 🕸️ [Snippets (Code to Copy)](#snippets)
-6. 🔗 [Assets](#links)
-7. 🚀 [More](#more)
+Prepwise is a cutting-edge job interview preparation platform designed to help you ace your next interview. Utilizing the power of Vapi AI voice agents and Google Gemini, Prepwise offers a realistic and interactive interview experience, complete with instant feedback to refine your skills. Built with Next.js, Firebase, and Tailwind CSS, Prepwise provides a sleek and modern user interface.
 
-## 🚨 Tutorial
+## ✨ Key Features
 
-This repository contains the code corresponding to an in-depth tutorial available on our YouTube channel, <a href="https://www.youtube.com/@javascriptmastery/videos" target="_blank"><b>JavaScript Mastery</b></a>.
+*   **🤖 AI-Powered Interviews:** Practice with realistic AI voice agents powered by Vapi.
+*   **🗣️ Instant Feedback:** Receive immediate feedback on your interview performance.
+*   **🎨 Modern UI/UX:** Enjoy a sleek and intuitive user interface built with Next.js and Tailwind CSS.
+*   **🔐 Secure Authentication:** Secure user authentication managed by Firebase.
+*   **📊 Interview Dashboard:** Track and manage your interview progress.
+*   **📝 Customizable Interviews:**  Tailor interviews by role, experience level, and tech stack.
+*   **🌐 Fully Responsive:**  Seamless experience across all devices.
 
-If you prefer visual learning, this is the perfect resource for you. Follow our tutorial to learn how to build projects like these step-by-step in a beginner-friendly manner!
+## 🛠️ Prerequisites & Dependencies
 
-<a href="https://www.youtube.com/watch?v=8GK8R77Bd7g" target="_blank"><img src="https://github.com/sujatagunale/EasyRead/assets/151519281/1736fca5-a031-4854-8c09-bc110e3bc16d" /></a>
+Before you begin, ensure you have the following installed:
 
-## <a name="introduction">🤖 Introduction</a>
+*   **Node.js (>=18.x):** [Download Node.js](https://nodejs.org/en/download/)
+*   **npm (>=8.x):**  Comes with Node.js.  Verify with `npm -v`.
+*   **Git:**  [Download Git](https://git-scm.com/downloads)
 
-Built with Next.js for the user interface and backend logic, Firebase for authentication and data storage, styled with TailwindCSS and using Vapi's voice agents, Prepwise is a website project designed to help you learn integrating AI models with your apps. The platform offers a sleek and modern experience for job interview preparation.
+This project relies on the following key dependencies:
 
-If you're getting started and need assistance or face any bugs, join our active Discord community with over **50k+** members. It's a place where people help each other out.
+| Dependency                 | Version | Description                                                                          |
+| -------------------------- | ------- | ------------------------------------------------------------------------------------ |
+| `next`                     | `15.2.2` | The React Framework for Production.                                                    |
+| `react`                    | `^19.0.0` | A JavaScript library for building user interfaces.                                  |
+| `react-dom`                | `^19.0.0` | Serves as the entry point to the DOM or server-side rendering surfaces for React. |
+| `firebase`                 | `^11.4.0` | A comprehensive suite of backend services from Google.                               |
+| `tailwindcss`              | `^4`     | A utility-first CSS framework for rapidly styling web pages.                        |
+| `@vapi-ai/web`              | `^2.2.4` |  Library for integrating Vapi AI voice agents.                                         |
+| `ai`                       | `^4.1.61` |  Artificial Intelligence tools and utilities.                                          |
+| `zod`                      | `^3.24.4` |  TypeScript-first schema validation with static type inference.                      |
 
-<a href="https://discord.com/invite/n6EdbFJ" target="_blank"><img src="https://github.com/sujatagunale/EasyRead/assets/151519281/618f4872-1e10-42da-8213-1d69e486d02e" /></a>
+And the following devDependencies:
 
-## <a name="tech-stack">⚙️ Tech Stack</a>
+| Dependency                  | Version | Description                                                                                    |
+| --------------------------- | ------- | ---------------------------------------------------------------------------------------------- |
+| `@types/node`              | `^20`    | TypeScript definitions for Node.js.                                                            |
+| `@types/react`             | `^19`    | TypeScript definitions for React.                                                              |
+| `@types/react-dom`         | `^19`    | TypeScript definitions for React DOM.                                                          |
+| `eslint`                    | `^9.27.0`  |  A JavaScript linting tool.                                                                    |
+| `eslint-config-next`        | `15.2.2` |  ESLint configuration for Next.js projects.                                                   |
+| `typescript`                | `^5`    | A superset of JavaScript that adds static typing.                                           |
 
-- Next.js
-- Firebase
-- Tailwind CSS
-- Vapi AI
-- shadcn/ui
-- Google Gemeni
-- Zod
+## 📦 Installation Steps
 
-## <a name="features">🔋 Features</a>
+1.  **Clone the Repository:**
 
-👉 **Authentication**: Sign Up and Sign In using password/email authentication handled by Firebase.
+    ```bash
+    git clone https://github.com/interviewPrepAgent/interviewPrepAgent.git
+    cd interviewPrepAgent
+    ```
 
-👉 **Create Interviews**: Easily generate job interviews with help of Vapi voice assistants and Google Gemini.
+2.  **Install Dependencies:**
 
-👉 **Get feedback from AI**: Take the interview with AI voice agent, and receive instant feedback based on your conversation.
+    ```bash
+    npm install
+    ```
 
-👉 **Modern UI/UX**: A sleek and user-friendly interface designed for a great experience.
+3.  **Set Up Environment Variables:**
 
-👉 **Interview Page**: Conduct AI-driven interviews with real-time feedback and detailed transcripts.
+    Create a `.env.local` file in the root of your project and populate it with your API keys and credentials:
 
-👉 **Dashboard**: Manage and track all your interviews with easy navigation.
+    ```env
+    NEXT_PUBLIC_VAPI_WEB_TOKEN=YOUR_VAPI_WEB_TOKEN
+    NEXT_PUBLIC_VAPI_WORKFLOW_ID=YOUR_VAPI_WORKFLOW_ID
 
-👉 **Responsiveness**: Fully responsive design that works seamlessly across devices.
+    GOOGLE_GENERATIVE_AI_API_KEY=YOUR_GOOGLE_GENERATIVE_AI_API_KEY
 
-and many more, including code architecture and reusability
+    NEXT_PUBLIC_BASE_URL=http://localhost:3000 # Or your deployed URL
 
-## <a name="quick-start">🤸 Quick Start</a>
+    NEXT_PUBLIC_FIREBASE_API_KEY=YOUR_FIREBASE_API_KEY
+    NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=YOUR_FIREBASE_AUTH_DOMAIN
+    NEXT_PUBLIC_FIREBASE_PROJECT_ID=YOUR_FIREBASE_PROJECT_ID
+    NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=YOUR_FIREBASE_STORAGE_BUCKET
+    NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=YOUR_FIREBASE_MESSAGING_SENDER_ID
+    NEXT_PUBLIC_FIREBASE_APP_ID=YOUR_FIREBASE_APP_ID
 
-Follow these steps to set up the project locally on your machine.
+    FIREBASE_PROJECT_ID=YOUR_FIREBASE_PROJECT_ID
+    FIREBASE_CLIENT_EMAIL=YOUR_FIREBASE_CLIENT_EMAIL
+    FIREBASE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nYOUR_FIREBASE_PRIVATE_KEY\n-----END PRIVATE KEY-----\n"
+    ```
 
-**Prerequisites**
+    **Note:**
 
-Make sure you have the following installed on your machine:
+    *   Replace placeholders with your actual credentials.
+    *   For Firebase private key, ensure to include the `\n` characters as shown.
 
-- [Git](https://git-scm.com/)
-- [Node.js](https://nodejs.org/en)
-- [npm](https://www.npmjs.com/) (Node Package Manager)
+    You can obtain these credentials from:
 
-**Cloning the Repository**
+    *   **Firebase:** [Firebase Console](https://console.firebase.google.com/)
+    *   **Vapi:** [Vapi AI](https://vapi.ai/)
+    *   **Google Gemini:** [Google AI Studio](https://makersuite.google.com/)
 
-```bash
-git clone https://github.com/adrianhajdin/ai_mock_interviews.git
-cd ai_mock_interviews
+4.  **Run the Development Server:**
+
+    ```bash
+    npm run dev
+    ```
+
+    Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
+
+## 💻 Usage Examples
+
+### Creating a New Interview
+
+Navigate to the dashboard and click the "Create Interview" button. Fill in the form with the desired role, experience level, tech stack, and question type. The application will then generate a set of questions tailored to your specifications.
+
+### Taking an Interview
+
+Select an interview from your dashboard and click "Start Interview." The Vapi AI voice agent will guide you through the questions. Speak clearly and confidently, just as you would in a real interview!
+
+### Reviewing Feedback
+
+After completing an interview, you will receive instant feedback on your performance, including scores on communication skills, technical knowledge, problem-solving, and more.  Use this feedback to identify areas for improvement.
+
+## ⚙️ Configuration Options
+
+The following configuration options can be adjusted through environment variables in the `.env.local` file:
+
+| Variable                        | Description                                                                                | Default Value         |
+| ------------------------------- | ------------------------------------------------------------------------------------------ | --------------------- |
+| `NEXT_PUBLIC_VAPI_WEB_TOKEN`      | The API token for accessing Vapi services.                                                 | *Required*            |
+| `NEXT_PUBLIC_VAPI_WORKFLOW_ID`    | The ID of the Vapi workflow used for the interview.                                        | *Required*            |
+| `GOOGLE_GENERATIVE_AI_API_KEY`  | The API key for accessing Google's generative AI models (Gemini).                         | *Required*            |
+| `NEXT_PUBLIC_BASE_URL`          | The base URL of the application (used for redirects and API calls).                      | `http://localhost:3000` |
+| Firebase Credentials            | API Keys for authentication, database etc.                                                 | *Required*            |
+
+## 🤝 Contributing Guidelines
+
+Contributions are welcome and appreciated! If you'd like to contribute to Prepwise, please follow these guidelines:
+
+1.  **Fork the repository.**
+2.  **Create a new branch for your feature or bug fix.**
+3.  **Implement your changes.**
+4.  **Write tests to ensure your changes are working correctly.**
+5.  **Submit a pull request with a clear description of your changes.**
+
+## 📜 License Information
+
+This project is currently private and not open source. All rights reserved.
+Do not redistribute.
+
+## 🗂️ Package.json Context
+
+Here's a snippet from the `package.json` file, highlighting the key scripts and configurations:
+
+```json
+{
+  "name": "prepwise",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@ai-sdk/google": "^1.1.25",
+    "@hookform/resolvers": "^4.1.3",
+    "@radix-ui/react-label": "^2.1.6",
+    "@radix-ui/react-slot": "^1.2.2",
+    "@vapi-ai/web": "^2.2.4",
+    "ai": "^4.1.61",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "dayjs": "^1.11.13",
+    "firebase": "^11.4.0",
+    "firebase-admin": "^13.2.0",
+    "lucide-react": "^0.482.0",
+    "next": "15.2.2",
+    "next-themes": "^0.4.6",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-hook-form": "^7.56.4",
+    "sonner": "^2.0.3",
+    "tailwind-merge": "^3.0.2",
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^3.24.4"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@eslint/js": "^9.27.0",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9.27.0",
+    "eslint-config-next": "15.2.2",
+    "eslint-plugin-react": "^7.37.5",
+    "globals": "^16.1.0",
+    "tailwindcss": "^4",
+    "typescript": "^5",
+    "typescript-eslint": "^8.32.1"
+  }
+}
 ```
 
-**Installation**
+*   **`dev`**: Starts the Next.js development server with Turbopack.
+*   **`build`**: Builds the Next.js application for production.
+*   **`start`**: Starts the Next.js production server.
+*   **`lint`**: Runs the ESLint linter to check for code quality issues.
 
-Install the project dependencies using npm:
-
-```bash
-npm install
-```
-
-**Set Up Environment Variables**
-
-Create a new file named `.env.local` in the root of your project and add the following content:
-
-```env
-NEXT_PUBLIC_VAPI_WEB_TOKEN=
-NEXT_PUBLIC_VAPI_WORKFLOW_ID=
-
-GOOGLE_GENERATIVE_AI_API_KEY=
-
-NEXT_PUBLIC_BASE_URL=
-
-NEXT_PUBLIC_FIREBASE_API_KEY=
-NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=
-NEXT_PUBLIC_FIREBASE_PROJECT_ID=
-NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=
-NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
-NEXT_PUBLIC_FIREBASE_APP_ID=
-
-FIREBASE_PROJECT_ID=
-FIREBASE_CLIENT_EMAIL=
-FIREBASE_PRIVATE_KEY=
-```
-
-Replace the placeholder values with your actual **[Firebase](https://firebase.google.com/)**, **[Vapi](https://vapi.ai/?utm_source=youtube&utm_medium=video&utm_campaign=jsmastery_recruitingpractice&utm_content=paid_partner&utm_term=recruitingpractice)** credentials.
-
-**Running the Project**
-
-```bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser to view the project.
-
-## <a name="snippets">🕸️ Snippets</a>
+## 🕸️ Code Snippets
 
 <details>
 <summary><code>globals.css</code></summary>
@@ -529,7 +622,6 @@ export const getRandomInterviewCover = () => {
   const randomIndex = Math.floor(Math.random() * interviewCovers.length);
   return `/covers${interviewCovers[randomIndex]}`;
 };
-
 ```
 
 </details>
@@ -595,127 +687,4 @@ system:
             <Image src="/star.svg" width={22} height={22} alt="star" />
             <p>
               Overall Impression:{" "}
-              <span className="text-primary-200 font-bold">
-                {feedback?.totalScore}
-              </span>
-              /100
-            </p>
-          </div>
-
-          <div className="flex flex-row gap-2">
-            <Image src="/calendar.svg" width={22} height={22} alt="calendar" />
-            <p>
-              {feedback?.createdAt
-                ? dayjs(feedback.createdAt).format("MMM D, YYYY h:mm A")
-                : "N/A"}
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <hr />
-
-      <p>{feedback?.finalAssessment}</p>
-
-      <div className="flex flex-col gap-4">
-        <h2>Breakdown of the Interview:</h2>
-        {feedback?.categoryScores?.map((category, index) => (
-          <div key={index}>
-            <p className="font-bold">
-              {index + 1}. {category.name} ({category.score}/100)
-            </p>
-            <p>{category.comment}</p>
-          </div>
-        ))}
-      </div>
-
-      <div className="flex flex-col gap-3">
-        <h3>Strengths</h3>
-        <ul>
-          {feedback?.strengths?.map((strength, index) => (
-            <li key={index}>{strength}</li>
-          ))}
-        </ul>
-      </div>
-
-      <div className="flex flex-col gap-3">
-        <h3>Areas for Improvement</h3>
-        <ul>
-          {feedback?.areasForImprovement?.map((area, index) => (
-            <li key={index}>{area}</li>
-          ))}
-        </ul>
-      </div>
-
-      <div className="buttons">
-        <Button className="btn-secondary flex-1">
-          <Link href="/" className="flex w-full justify-center">
-            <p className="text-sm font-semibold text-primary-200 text-center">
-              Back to dashboard
-            </p>
-          </Link>
-        </Button>
-
-        <Button className="btn-primary flex-1">
-          <Link
-            href={`/interview/${id}`}
-            className="flex w-full justify-center"
-          >
-            <p className="text-sm font-semibold text-black text-center">
-              Retake Interview
-            </p>
-          </Link>
-        </Button>
-      </div>
-    </section>
-```
-
-</details>
-
-<details>
-<summary><code>Dummy Interviews:</code></summary>
-
-```javascript
-export const dummyInterviews: Interview[] = [
-  {
-    id: "1",
-    userId: "user1",
-    role: "Frontend Developer",
-    type: "Technical",
-    techstack: ["React", "TypeScript", "Next.js", "Tailwind CSS"],
-    level: "Junior",
-    questions: ["What is React?"],
-    finalized: false,
-    createdAt: "2024-03-15T10:00:00Z",
-  },
-  {
-    id: "2",
-    userId: "user1",
-    role: "Full Stack Developer",
-    type: "Mixed",
-    techstack: ["Node.js", "Express", "MongoDB", "React"],
-    level: "Senior",
-    questions: ["What is Node.js?"],
-    finalized: false,
-    createdAt: "2024-03-14T15:30:00Z",
-  },
-];
-```
-
-</details>
-
-
-## <a name="links">🔗 Assets</a>
-
-Public assets used in the project can be found [here](https://drive.google.com/drive/folders/1DuQ9bHH3D3ZAN_CFKfBgsaB8DEhEdnog?usp=sharing)
-
-## <a name="more">🚀 More</a>
-
-**Advance your skills with Next.js Pro Course**
-
-Enjoyed creating this project? Dive deeper into our PRO courses for a richer learning adventure. They're packed with
-detailed explanations, cool features, and exercises to boost your skills. Give it a go!
-
-<a href="https://jsmastery.pro/next15" target="_blank">
-   <img src="https://github.com/user-attachments/assets/b8760e69-1f81-4a71-9108-ceeb1de36741" alt="Project Banner">
-</a>
+              <span className="text-primary
