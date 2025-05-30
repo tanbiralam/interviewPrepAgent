@@ -296,7 +296,7 @@ export const generator = {
         },
       },
       method: "POST",
-      url: `${process.env.NEXT_PUBLIC_BASE_URL}/api/vapi/generate`,
+      url: `${process.env.NEXT_PUBLIC_VAPI_API_URL}/api/vapi/generate`,
       headers: {
         type: "object",
         properties: {},
