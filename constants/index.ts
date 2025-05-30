@@ -1,4 +1,4 @@
-import { CreateAssistantDTO, CreateWorkflowDTO } from "@vapi-ai/web/dist/api";
+import { CreateAssistantDTO } from "@vapi-ai/web/dist/api";
 import { z } from "zod";
 
 export const mappings = {
@@ -229,7 +229,7 @@ export const dummyInterviews: Interview[] = [
   },
 ];
 
-export const generator: CreateWorkflowDTO = {
+export const generator = {
   name: "interview_prep",
   nodes: [
     {
