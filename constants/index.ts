@@ -296,7 +296,7 @@ export const generator: CreateWorkflowDTO = {
         },
       },
       method: "POST",
-      url: `${process.env.NEXT_PUBLIC_VAPI_API_URL}/api/vapi/generate`,
+      url: "https://intervu-eta.vercel.app/api/vapi/generate",
       headers: {
         type: "object",
         properties: {},
