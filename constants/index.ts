@@ -230,195 +230,212 @@ export const dummyInterviews: Interview[] = [
 ];
 
 export const generator: CreateWorkflowDTO = {
-  name: "Generate Interview",
+  name: "interview_prep",
   nodes: [
     {
-      name: "start",
+      name: "introduction",
       type: "conversation",
       isStart: true,
       metadata: {
         position: {
-          x: 0,
-          y: 0,
+          x: -271.34578424033214,
+          y: -155.90331994318905,
         },
       },
-      prompt:
-        "Speak first. Greet the user and help them create a new AI Interviewer",
-      voice: {
-        model: "aura-2",
-        voiceId: "thalia",
-        provider: "deepgram",
+      prompt: "Greet the user and help them create a new AI Interviewer.",
+      model: {
+        model: "gpt-4o",
+        provider: "openai",
+        maxTokens: 1000,
+        temperature: 0.7,
       },
       variableExtractionPlan: {
         output: [
           {
-            title: "level",
-            description: "The job experience level.",
-            type: "string",
             enum: ["entry", "mid", "senior"],
+            type: "string",
+            title: "level",
+            description: "The job experience level. ",
           },
           {
-            title: "amount",
-            description: "How many questions would you like to generate?",
-            type: "number",
             enum: [],
+            type: "number",
+            title: "amount",
+            description: "How many questions would you like to generate? ",
           },
           {
+            enum: [],
+            type: "string",
             title: "techstack",
             description:
-              "A list of technologies to cover during the job interview. For example, React, Next.js, Express.js, Node and so on...",
-            type: "string",
-            enum: [],
+              "A list of technologies to cover during the job interview. For example, React, Next.js, Express.js, Node and so on… ",
           },
           {
+            enum: [],
+            type: "string",
             title: "role",
             description:
               "What role should would you like to train for? For example Frontend, Backend, Fullstack, Design, UX?",
-            type: "string",
-            enum: [],
           },
           {
-            title: "type",
-            description: "What type of the interview should it be? ",
+            enum: [],
             type: "string",
-            enum: ["behavioural", "technical", "mixed"],
+            title: "type",
+            description: "What type of the interview should it be?",
           },
         ],
       },
+      messagePlan: {
+        firstMessage: "Hey there!",
+      },
     },
     {
-      name: "apiRequest_1747470739045",
-      type: "apiRequest",
-      metadata: {
-        position: {
-          x: -16.075937072883846,
-          y: 703.623428447121,
-        },
-      },
-      method: "POST",
-      url: "https://intervu-eta.vercel.app/api/vapi/generate",
-      headers: {
-        type: "object",
-        properties: {},
-      },
-      body: {
-        type: "object",
-        properties: {
-          role: {
-            type: "string",
-            description: "",
-            value: "{{ role }}",
-          },
-          level: {
-            type: "string",
-            description: "",
-            value: "{{ level }}",
-          },
-          type: {
-            type: "string",
-            description: "",
-            value: "{{ type }}",
-          },
-          amount: {
-            type: "number",
-            description: "",
-            value: "{{ amount }}",
-          },
-          userid: {
-            type: "string",
-            description: "",
-            value: "{{ userid }}",
-          },
-          techstack: {
-            type: "string",
-            description: "",
-            value: "{{ techstack }}",
-          },
-        },
-      },
-      output: {
-        type: "object",
-        properties: {},
-      },
-      mode: "blocking",
-      hooks: [],
-    },
-    {
-      name: "conversation_1747721261435",
+      name: "conversation_1748618849342",
       type: "conversation",
       metadata: {
         position: {
-          x: -17.547788169718615,
-          y: 1003.3409337989506,
-        },
-      },
-      prompt:
-        "Thank the user for the conversation and inform them that the interview was generated successfully.",
-      voice: {
-        provider: "deepgram",
-        voiceId: "thalia",
-        model: "aura-2",
-      },
-    },
-    {
-      name: "conversation_1747744490967",
-      type: "conversation",
-      metadata: {
-        position: {
-          x: -11.165436030430953,
-          y: 484.94857971060617,
+          x: -271.34578424033214,
+          y: 163.78438025996442,
         },
       },
       prompt: "Say that the Interview will be generated shortly.",
-      voice: {
-        provider: "deepgram",
-        voiceId: "thalia",
-        model: "aura-2",
+      model: {
+        model: "gpt-4o",
+        provider: "openai",
+        maxTokens: 1000,
+        temperature: 0.7,
+      },
+      messagePlan: {
+        firstMessage: "",
       },
     },
     {
-      name: "hangup_1747744730181",
-      type: "hangup",
+      name: "API Request",
+      type: "tool",
       metadata: {
         position: {
-          x: 76.01267674000721,
-          y: 1272.0665127156606,
+          x: -271.34578424033214,
+          y: 413.78438025996445,
         },
+      },
+      tool: {
+        url: "https://intervu-eta.vercel.app/api/vapi/generate",
+        body: {
+          type: "object",
+          properties: {
+            role: {
+              type: "string",
+              value: "{{ role }}",
+              description: "",
+            },
+            type: {
+              type: "string",
+              value: "{{ type }}",
+              description: "",
+            },
+            level: {
+              type: "string",
+              value: "{{ level }}",
+              description: "",
+            },
+            amount: {
+              type: "number",
+              value: "{{ amount }}",
+              description: "",
+            },
+            userid: {
+              type: "string",
+              value: "{{ userid }}",
+              description: "",
+            },
+            techstack: {
+              type: "string",
+              value: "{{ techstack }}",
+              description: "",
+            },
+          },
+        },
+        type: "apiRequest",
+        method: "POST",
+        function: {
+          name: "untitled_tool",
+          parameters: {
+            type: "object",
+            required: [],
+            properties: {},
+          },
+        },
+      },
+    },
+    {
+      name: "conversation_1748619263177",
+      type: "conversation",
+      metadata: {
+        position: {
+          x: -271.34578424033214,
+          y: 663.7843802599645,
+        },
+      },
+      prompt:
+        "Thank the user for the conversation and inform them that the interview has been generated successfully.",
+      model: {
+        model: "gpt-4o",
+        provider: "openai",
+        maxTokens: 1000,
+        temperature: 0.7,
+      },
+      messagePlan: {
+        firstMessage: "",
+      },
+    },
+    {
+      name: "hangup_1748619328720",
+      type: "tool",
+      metadata: {
+        position: {
+          x: -271.29925594196294,
+          y: 928.9415459250685,
+        },
+      },
+      tool: {
+        type: "endCall",
       },
     },
   ],
   edges: [
     {
-      from: "apiRequest_1747470739045",
-      to: "conversation_1747721261435",
+      from: "introduction",
+      to: "conversation_1748618849342",
+      condition: {
+        type: "ai",
+        prompt: "If user provided all the required variables.",
+      },
+    },
+    {
+      from: "conversation_1748618849342",
+      to: "API Request",
       condition: {
         type: "ai",
         prompt: "",
       },
     },
     {
-      from: "start",
-      to: "conversation_1747744490967",
-      condition: {
-        type: "ai",
-        prompt: "If user provided all the required variables",
-      },
-    },
-    {
-      from: "conversation_1747744490967",
-      to: "apiRequest_1747470739045",
+      from: "API Request",
+      to: "conversation_1748619263177",
       condition: {
         type: "ai",
         prompt: "",
       },
     },
     {
-      from: "conversation_1747721261435",
-      to: "hangup_1747744730181",
+      from: "conversation_1748619263177",
+      to: "hangup_1748619328720",
       condition: {
         type: "ai",
         prompt: "",
       },
     },
   ],
+  globalPrompt:
+    "You are a voice assistant helping with creating new AI interviewers. Your task is to collect data from the user. Remember that this is a voice conversation - do not use any special characters.\n",
 };
