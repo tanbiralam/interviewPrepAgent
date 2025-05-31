@@ -3,13 +3,12 @@ import Link from "next/link";
 import React from "react";
 
 import InterviewCard from "@/components/InterviewCard";
-import { dummyInterviews } from "@/constants";
 import { Button } from "@/components/ui/button";
+import { getCurrentUser } from "@/lib/actions/auth.auction";
 import {
-  getCurrentUser,
   getInterviewsByUserId,
   getLatestInterviews,
-} from "@/lib/actions/auth.auction";
+} from "@/lib/actions/general.action";
 
 const page = async () => {
   const user = await getCurrentUser();
