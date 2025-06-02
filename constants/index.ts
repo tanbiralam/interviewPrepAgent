@@ -1,6 +1,8 @@
 import { CreateAssistantDTO } from "@vapi-ai/web/dist/api";
 import { z } from "zod";
 
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? "";
+
 export const mappings = {
   "react.js": "react",
   reactjs: "react",
@@ -319,7 +321,7 @@ export const generator = {
         },
       },
       tool: {
-        url: "https://intervu-eta.vercel.app/api/vapi/generate",
+        url: `${baseUrl}/api/vapi/generate`,
         body: {
           type: "object",
           properties: {
