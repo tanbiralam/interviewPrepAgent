@@ -6,6 +6,18 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+// Logging utility for feedback operations
+export function logFeedbackOperation(
+  operation: string,
+  data: Record<string, unknown>
+) {
+  const timestamp = new Date().toISOString();
+  console.log(`[${timestamp}] Feedback ${operation}:`, {
+    operation,
+    ...data,
+  });
+}
+
 const techIconBaseURL = "https://cdn.jsdelivr.net/gh/devicons/devicon/icons";
 
 const normalizeTechName = (tech: string) => {
@@ -41,7 +53,6 @@ export const getTechLogos = async (techArray: string[]) => {
   return results;
 };
 
-export const getRandomInterviewCover = () => {
-  const randomIndex = Math.floor(Math.random() * interviewCovers.length);
-  return `/covers${interviewCovers[randomIndex]}`;
-};
+export function getRandomInterviewCover() {
+  return interviewCovers[Math.floor(Math.random() * interviewCovers.length)];
+}

@@ -5,6 +5,7 @@ import { generateObject } from "ai";
 
 import { feedbackSchema } from "@/constants";
 import { db } from "@/firebase/admin";
+import { logFeedbackOperation } from "@/lib/utils";
 
 export async function getInterviewsByUserId(
   userId: string
@@ -50,6 +51,8 @@ export async function createFeedback(params: CreateFeedbackParams) {
   const { interviewId, userId, transcript, feedbackId } = params;
 
   try {
+    logFeedbackOperation("start", { interviewId, userId });
+
     const formattedTranscript = transcript
       .map(
         (sentence: { role: string; content: string }) =>
@@ -78,23 +81,30 @@ export async function createFeedback(params: CreateFeedbackParams) {
         "You are a professional interviewer analyzing a mock interview. Your task is to evaluate the candidate based on structured categories",
     });
 
+    const currentTimestamp = new Date().toISOString();
     const feedback = {
-      interviewId: interviewId,
-      userId: userId,
+      interviewId,
+      userId,
+      attemptTimestamp: currentTimestamp,
       totalScore: object.totalScore,
       categoryScores: object.categoryScores,
       strengths: object.strengths,
       areasForImprovement: object.areasForImprovement,
       finalAssessment: object.finalAssessment,
-      createdAt: new Date().toISOString(),
+      createdAt: currentTimestamp,
     };
 
     let feedbackRef;
 
     if (feedbackId) {
       feedbackRef = db.collection("feedback").doc(feedbackId);
+      logFeedbackOperation("update", { feedbackId, ...feedback });
     } else {
       feedbackRef = db.collection("feedback").doc();
+      logFeedbackOperation("create", {
+        newFeedbackId: feedbackRef.id,
+        ...feedback,
+      });
     }
 
     await feedbackRef.set(feedback);
@@ -102,6 +112,7 @@ export async function createFeedback(params: CreateFeedbackParams) {
     return { success: true, feedbackId: feedbackRef.id };
   } catch (error) {
     console.error("Error saving feedback:", error);
+    logFeedbackOperation("error", { error, interviewId, userId });
     return { success: false };
   }
 }
@@ -111,15 +122,34 @@ export async function getFeedbackByInterviewId(
 ): Promise<Feedback | null> {
   const { interviewId, userId } = params;
 
-  const querySnapshot = await db
-    .collection("feedback")
-    .where("interviewId", "==", interviewId)
-    .where("userId", "==", userId)
-    .limit(1)
-    .get();
+  logFeedbackOperation("fetch-start", { interviewId, userId });
 
-  if (querySnapshot.empty) return null;
+  try {
+    const querySnapshot = await db
+      .collection("feedback")
+      .where("interviewId", "==", interviewId)
+      .where("userId", "==", userId)
+      .orderBy("attemptTimestamp", "desc")
+      .limit(1)
+      .get();
 
-  const feedbackDoc = querySnapshot.docs[0];
-  return { id: feedbackDoc.id, ...feedbackDoc.data() } as Feedback;
+    if (querySnapshot.empty) {
+      logFeedbackOperation("fetch-empty", { interviewId, userId });
+      return null;
+    }
+
+    const feedbackDoc = querySnapshot.docs[0];
+    const feedback = { id: feedbackDoc.id, ...feedbackDoc.data() } as Feedback;
+
+    logFeedbackOperation("fetch-success", {
+      feedbackId: feedback.id,
+      attemptTimestamp: feedback.attemptTimestamp,
+    });
+
+    return feedback;
+  } catch (error) {
+    console.error("Error fetching feedback:", error);
+    logFeedbackOperation("fetch-error", { error, interviewId, userId });
+    return null;
+  }
 }
