@@ -1,3 +1,4 @@
+import { Interview } from "@/types";
 import { CreateAssistantDTO } from "@vapi-ai/web/dist/api";
 import { z } from "zod";
 
@@ -138,7 +139,7 @@ Be professional, yet warm and welcoming:
 Use official yet friendly language.
 Keep responses concise and to the point (like in a real voice interview).
 Avoid robotic phrasing—sound natural and conversational.
-Answer the candidate’s questions professionally:
+Answer the candidate's questions professionally:
 
 If asked about the role, company, or expectations, provide a clear and relevant answer.
 If unsure, redirect the candidate to HR for more details.
@@ -192,18 +193,18 @@ export const feedbackSchema = z.object({
 });
 
 export const interviewCovers = [
-  "/adobe.png",
-  "/amazon.png",
-  "/facebook.png",
-  "/hostinger.png",
-  "/pinterest.png",
-  "/quora.png",
-  "/reddit.png",
-  "/skype.png",
-  "/spotify.png",
-  "/telegram.png",
-  "/tiktok.png",
-  "/yahoo.png",
+  "/covers/adobe.png",
+  "/covers/amazon.png",
+  "/covers/facebook.png",
+  "/covers/hostinger.png",
+  "/covers/pinterest.png",
+  "/covers/quora.png",
+  "/covers/reddit.png",
+  "/covers/skype.png",
+  "/covers/spotify.png",
+  "/covers/telegram.png",
+  "/covers/tiktok.png",
+  "/covers/yahoo.png",
 ];
 
 export const dummyInterviews: Interview[] = [

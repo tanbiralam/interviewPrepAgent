@@ -6,6 +6,13 @@ import { generateObject } from "ai";
 import { feedbackSchema } from "@/constants";
 import { db } from "@/firebase/admin";
 import { logFeedbackOperation } from "@/lib/utils";
+import {
+  Interview,
+  GetLatestInterviewsParams,
+  CreateFeedbackParams,
+  GetFeedbackByInterviewIdParams,
+  Feedback,
+} from "@/types";
 
 export async function getInterviewsByUserId(
   userId: string
@@ -30,7 +37,7 @@ export async function getLatestInterviews(
   const interviews = await db
     .collection("interviews")
     .orderBy("createdAt", "desc")
-    .where("finalised", "==", true)
+    .where("finalized", "==", true)
     .where("userId", "!=", userId)
     .limit(limit)
     .get();
@@ -150,6 +157,31 @@ export async function getFeedbackByInterviewId(
   } catch (error) {
     console.error("Error fetching feedback:", error);
     logFeedbackOperation("fetch-error", { error, interviewId, userId });
+    return null;
+  }
+}
+
+export async function getAllFeedbacksByInterviewId(
+  params: GetFeedbackByInterviewIdParams
+): Promise<Feedback[] | null> {
+  const { interviewId, userId } = params;
+
+  try {
+    const querySnapshot = await db
+      .collection("feedback")
+      .where("interviewId", "==", interviewId)
+      .where("userId", "==", userId)
+      .orderBy("attemptTimestamp", "desc")
+      .get();
+
+    const feedbacks = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    })) as Feedback[];
+
+    return feedbacks;
+  } catch (error) {
+    console.error("Error fetching feedbacks:", error);
     return null;
   }
 }
