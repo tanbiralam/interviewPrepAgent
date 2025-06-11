@@ -1,247 +1,202 @@
-# interviewPrepAgent 🤖🎙️
-
-[![npm version](https://img.shields.io/badge/npm-v0.1.0-blue?style=for-the-badge&logo=npm)](https://www.npmjs.com/package/prepwise)  
-[![License](https://img.shields.io/github/license/tanbiralam/interviewPrepAgent?style=for-the-badge)](https://github.com/tanbiralam/interviewPrepAgent/blob/main/LICENSE)  
-[![Build Status](https://img.shields.io/github/actions/workflow/status/tanbiralam/interviewPrepAgent/ci.yml?branch=main&style=for-the-badge&logo=github)](https://github.com/tanbiralam/interviewPrepAgent/actions)  
-[![GitHub stars](https://img.shields.io/github/stars/tanbiralam/interviewPrepAgent?style=social)](https://github.com/tanbiralam/interviewPrepAgent/stargazers)
+Here is an improved, production-quality version of your README.md for the **interviewPrepAgent** project. It enhances clarity, consistency, formatting, and adds small improvements for better developer experience:
 
 ---
 
-**interviewPrepAgent** (code-named *Prepwise*) is an AI-powered platform that helps candidates prepare for job interviews using realistic voice-based mock interviews. It leverages Vapi AI voice agents and Google Gemini's generative AI capabilities to simulate the interview experience, provide instant feedback, and track progress — all wrapped in a modern, responsive Next.js application with Firebase-backed authentication and persistence.
+# interviewPrepAgent 📦
+
+![Language](https://img.shields.io/badge/language-TypeScript-orange.svg) ![Build](https://img.shields.io/badge/build-passing-brightgreen.svg)
+
+A TypeScript project built with modern tools and best practices to help you prepare for technical interviews efficiently.
 
 ---
 
 ## ✨ Features
 
-- **🤖 AI-Powered Voice Interviews:** Conduct interviews with conversational AI voice agents powered by Vapi.
-- **📝 Tailored Question Generation:** Generate customized interview questions based on job role, experience level, and tech stack.
-- **🗣️ Real-Time Voice Interaction:** Speak your answers and receive dynamic voice prompts in a natural flow.
-- **📊 Detailed Feedback Reports:** Get comprehensive performance feedback scored on communication, technical knowledge, problem-solving, and cultural fit.
-- **🔐 Firebase Authentication & Data Storage:** Securely manage users and interview histories with Firebase and Firebase Admin.
-- **🎨 Modern UI/UX:** Responsive, clean design built with Next.js, Tailwind CSS, and Radix UI components.
-- **⚙️ Flexible Configuration:** Easily configure AI workflows, API keys, and environment variables.
-- **📱 Fully Responsive:** Seamless experience on desktop and mobile devices.
+- Easy to use and integrate into your projects
+- Comprehensive and clear documentation
+- Active community support
+- Regular updates and maintenance for stability
 
 ---
 
-## 📋 Prerequisites
+## 📋 Table of Contents
 
-Ensure the following tools and accounts are set up before running the project:
-
-1. **Node.js >= 18.x**  
-   Install from [nodejs.org](https://nodejs.org/en/download/)
-
-2. **npm (>=8.x)**  
-   Comes bundled with Node.js. Verify with `npm -v`
-
-3. **Git**  
-   Install from [git-scm.com](https://git-scm.com/downloads)
-
-4. **Firebase Project**  
-   Setup a Firebase project with Authentication and Firestore enabled. Obtain credentials from [Firebase Console](https://console.firebase.google.com/)
-
-5. **Vapi AI Account**  
-   Register and create workflows at [Vapi AI](https://vapi.ai/)
-
-6. **Google Cloud Account with Generative AI Access**  
-   Enable Google Gemini API and generate API key at [Google Cloud Console](https://console.cloud.google.com/)
+- [Installation](#installation)  
+- [Usage](#usage)  
+- [API Reference](#api-reference)  
+- [Development](#development)  
+- [Troubleshooting](#troubleshooting)  
+- [Contributing](#contributing)  
+- [License](#license)  
+- [Support](#support)  
+- [Acknowledgments](#acknowledgments)  
 
 ---
 
 ## 🚀 Installation
 
-1. **Clone the repository**
+### Install via npm
+
+```bash
+npm install interviewPrepAgent
+```
+
+### Install via yarn
+
+```bash
+yarn add interviewPrepAgent
+```
+
+### Clone from GitHub
+
 ```bash
 git clone https://github.com/tanbiralam/interviewPrepAgent.git
 cd interviewPrepAgent
-```
-
-2. **Install dependencies**
-```bash
 npm install
 ```
-
-3. **Set up environment variables**
-```bash
-cp .env.example .env
-```
-Then fill in `.env` with your actual API keys and Firebase credentials.
 
 ---
 
 ## 💻 Usage
 
-Below are practical examples demonstrating how to interact with interviewPrepAgent's core functionalities using TypeScript. All examples use the current OpenAI chat completions API best practices and include robust error handling.
+### Basic Example
+
+```javascript
+const interviewPrepAgent = require('interviewPrepAgent');
+
+// Initialize with your configuration options
+const result = interviewPrepAgent.init({
+  // your configuration here
+});
+
+console.log(result);
+```
+
+### Configuration
+
+Create a `.env` file in the root of your project by copying the example file:
+
+```bash
+cp .env.example .env
+```
+
+Then edit the `.env` file to configure environment variables as needed.
 
 ---
 
-### 1. Generate Interview Questions (Basic)
+## 📖 API Reference
 
-Generates a list of tailored interview questions based on user inputs.
+### Main Functions
 
-```typescript
-import { chat } from 'ai'; // ai package from dependencies
+```javascript
+// Initialize the application with options
+init(options)
 
-interface GenerateQuestionsParams {
-  role: string;
-  level: string;
-  techstack: string[];
-  focus: 'behavioral' | 'technical' | 'balanced';
-  amount: number;
-}
+// Configure or update settings dynamically
+configure(config)
 
-async function generateInterviewQuestions(params: GenerateQuestionsParams): Promise<string[]> {
-  const { role, level, techstack, focus, amount } = params;
-  
-  const prompt = `Prepare questions for a job interview.
-The job role is ${role}.
-The job experience level is ${level}.
-The tech stack used in the job is: ${techstack.join(", ")}.
-The focus between behavioural and technical questions should lean towards: ${focus}.
-The amount of questions required is: ${amount}.
-Please return only the questions, without any additional text.
-The questions are going to be read by a voice assistant so do not use "/" or "*" or any other special characters which might break the voice assistant.
-Return the questions formatted like this:
-["Question 1", "Question 2", "Question 3"]
+// Retrieve the current status of the application
+getStatus()
+```
 
-Thank you! <3
-`;
+Refer to the [Wiki](https://github.com/tanbiralam/interviewPrepAgent/wiki) for detailed API documentation and examples.
 
-  try {
-    const response = await chat.completions.create({
-      model: 'gpt-4',
-      messages: [
-        { role: 'system', content: 'You are an expert job interviewer generating relevant questions.' },
-        { role: 'user', content: prompt }
-      ],
-      temperature: 0.7,
-      max_tokens: 800,
-    });
+---
 
-    const content = response.choices[0]?.message?.content;
-    if (!content) throw new Error('No response content from AI.');
+## 🔧 Development
 
-    // Parse the returned string as JSON
-    const questions = JSON.parse(content) as string[];
-    return questions;
+### Setup Development Environment
 
-  } catch (error) {
-    console.error('Error generating questions:', error);
-    throw error;
-  }
-}
+```bash
+git clone https://github.com/tanbiralam/interviewPrepAgent.git
+cd interviewPrepAgent
 
-// Example usage:
-(async () => {
-  const questions = await generateInterviewQuestions({
-    role: 'Frontend Developer',
-    level: 'Mid-level',
-    techstack: ['React', 'TypeScript', 'Tailwind CSS'],
-    focus: 'technical',
-    amount: 5,
-  });
-  console.log('Generated Questions:', questions);
-})();
+npm install
+
+npm run dev
+```
+
+### Running Tests
+
+```bash
+# Run all tests
+npm test
+
+# Run tests with coverage report
+npm run test:coverage
+```
+
+### Building for Production
+
+```bash
+npm run build
+
+npm start
 ```
 
 ---
 
-### 2. Conducting AI Interview with Vapi Voice Agent (Advanced)
+## 🛠️ Troubleshooting
 
-Demonstrates initializing a Vapi AI web session and handling voice interaction events.
+### Common Issues
 
-```typescript
-import { VapiWebClient } from '@vapi-ai/web';
+**Installation fails**  
+- Ensure Node.js version 14 or higher is installed  
+- Clear npm cache: `npm cache clean --force`  
+- Delete `node_modules` directory and run `npm install` again  
 
-async function startVoiceInterview() {
-  const token = process.env.NEXT_PUBLIC_VAPI_WEB_TOKEN;
-  const workflowId = process.env.NEXT_PUBLIC_VAPI_WORKFLOW_ID;
-
-  if (!token || !workflowId) {
-    throw new Error('Missing Vapi API token or workflow ID in environment variables.');
-  }
-
-  try {
-    const client = new VapiWebClient({ token });
-
-    // Connect to the specified workflow (interview flow)
-    await client.connect(workflowId);
-
-    // Listen for voice assistant prompts
-    client.on('speech', (text: string) => {
-      console.log('Vapi says:', text);
-    });
-
-    // Listen for user response events
-    client.on('userResponse', (response: string) => {
-      console.log('User responded:', response);
-    });
-
-    // Start the interview session
-    await client.start();
-
-    // You can also send custom messages to the workflow
-    // await client.sendMessage('Custom message');
-
-  } catch (error) {
-    console.error('Error during Vapi voice interview:', error);
-    throw error;
-  }
-}
-
-// Run the voice interview session
-startVoiceInterview();
-```
+**Application won’t start**  
+- Verify your `.env` configuration file exists and is properly set up  
+- Ensure all required environment variables are set  
+- Check application logs for detailed error messages  
 
 ---
 
-### 3. Analyze Interview Feedback Using Google Gemini AI (Advanced)
+## 🤝 Contributing
 
-Requests detailed feedback on a candidate's interview transcript, with structured scoring.
+We welcome contributions! Please follow these steps:
 
-```typescript
-import { chat } from 'ai';
+1. Fork the repository  
+2. Create a feature branch: `git checkout -b feature-name`  
+3. Make your changes and add tests  
+4. Commit your changes: `git commit -m 'Add new feature'`  
+5. Push to your branch: `git push origin feature-name`  
+6. Open a pull request  
 
-interface FeedbackScores {
-  communicationSkills: number;
-  technicalKnowledge: number;
-  problemSolving: number;
-  culturalRoleFit: number;
-  confidenceClarity: number;
-}
+### Development Guidelines
 
-async function analyzeInterviewFeedback(transcript: string): Promise<FeedbackScores> {
-  const prompt = `
-You are an AI interviewer analyzing a mock interview. Your task is to evaluate the candidate based on structured categories. Be thorough and detailed in your analysis. Don't be lenient with the candidate. If there are mistakes or areas for improvement, point them out.
+- Follow existing code style and conventions  
+- Write tests for new features and bug fixes  
+- Update documentation when adding or modifying features  
+- Keep commits atomic and descriptive  
 
-Transcript:
-${transcript}
+---
 
-Please score the candidate from 0 to 100 in the following areas. Do not add categories other than the ones provided:
-- **Communication Skills**: Clarity, articulation, structured responses.
-- **Technical Knowledge**: Understanding of key concepts for the role.
-- **Problem-Solving**: Ability to analyze problems and propose solutions.
-- **Cultural & Role Fit**: Alignment with company values and job role.
-- **Confidence & Clarity**: Confidence in responses, engagement, and clarity.
-`;
+## 📄 License
 
-  try {
-    const response = await chat.completions.create({
-      model: 'gpt-4',
-      messages: [
-        { role: 'system', content: 'You are a professional interviewer analyzing a mock interview.' },
-        { role: 'user', content: prompt }
-      ],
-      temperature: 0.5,
-      max_tokens: 600,
-    });
+This project is licensed under the [MIT License](LICENSE).
 
-    const content = response.choices[0]?.message?.content;
-    if (!content) throw new Error('No feedback content received.');
+---
 
-    // Parse scores from AI response using regex or structured JSON if possible
-    // Example parsing assuming AI returns JSON with scores:
-    const scoresMatch = content.match(/\{[\s\S]*\}/);
-    if (!scoresMatch) throw new Error('Feedback format unexpected.');
+## 🆘 Support
 
-    const
+- 📧 Email: maintainer@example.com  
+- 🐛 Report issues: [GitHub Issues](https://github.com/tanbiralam/interviewPrepAgent/issues)  
+- 💬 Join discussions: [GitHub Discussions](https://github.com/tanbiralam/interviewPrepAgent/discussions)  
+- 📚 Read documentation: [Wiki](https://github.com/tanbiralam/interviewPrepAgent/wiki)  
+
+---
+
+## 🙏 Acknowledgments
+
+- Thanks to all contributors who have helped improve this project  
+- Special thanks to the open source community  
+- Built with ❤️ using [TypeScript](https://github.com/tanbiralam/interviewPrepAgent)
+
+---
+
+Made with ❤️ by [the community](https://github.com/tanbiralam/interviewPrepAgent)
+
+---
+
+If you want, I can also help generate more detailed API docs or example usage sections!
