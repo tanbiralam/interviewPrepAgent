@@ -1,13 +1,12 @@
 import React from "react";
 import dayjs from "dayjs";
-import { getRandomInterviewCover } from "@/lib/utils";
+import { cn, getRandomInterviewCover } from "@/lib/utils";
 import Image from "next/image";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import DisplayTechIcons from "./DisplayTechIcons";
 import { getFeedbackByInterviewId } from "@/lib/actions/general.action";
 import { InterviewCardProps } from "@/types";
-import { Calendar, Star, ArrowRight } from "lucide-react";
 
 const InterviewCard = async ({
   id,
@@ -30,72 +29,71 @@ const InterviewCard = async ({
     createdAt ||
     Date.now();
   const formattedDate = dayjs(displayDate).format("MMM D, YYYY");
-  const formattedTime = dayjs(displayDate).format("h:mm A");
-
+  const badgeColor =
+    {
+      Behavioral: "bg-light-400",
+      Mixed: "bg-light-600",
+      Technical: "bg-light-800",
+    }[normalizedType] || "bg-light-600";
   return (
-    <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-dark-200/50 to-dark-200/30 backdrop-blur-sm border border-dark-200/50 hover:border-primary-200/50 transition-all duration-300 w-[360px] max-sm:w-full">
-      <div className="absolute inset-0 bg-gradient-to-br from-primary-200/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+    <div className="card-border w-[360px] max-sm:w-full min-h-96">
+      <div className="card-interview">
+        <div>
+          {/* Type Badge */}
+          <div
+            className={cn(
+              "absolute top-0 right-0 w-fit px-4 py-2 rounded-bl-lg",
+              badgeColor
+            )}
+          >
+            <p className="badge-text ">{normalizedType}</p>
+          </div>
 
-      {/* Header Section with Logo and Type Badge */}
-      <div className="relative p-6 pb-0 flex justify-between items-start">
-        <div className="relative">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary-200/20 to-transparent rounded-full blur-md transform group-hover:scale-110 transition-transform duration-300" />
+          {/* Cover Image */}
           <Image
             src={getRandomInterviewCover()}
-            alt="cover"
-            width={64}
-            height={64}
-            className="relative rounded-full object-cover z-10 group-hover:scale-105 transition-transform duration-300"
+            alt="cover-image"
+            width={90}
+            height={90}
+            className="rounded-full object-fit size-[90px]"
           />
-        </div>
-        {/* Type Badge */}
-        <div className="px-3 py-1.5 rounded-full bg-dark-200/80 backdrop-blur-sm border border-dark-200/50">
-          <p className="text-xs font-medium text-primary-100">
-            {normalizedType}
+
+          {/* Interview Role */}
+          <h3 className="mt-5 capitalize">{role} Interview</h3>
+
+          {/* Date & Score */}
+          <div className="flex flex-row gap-5 mt-3">
+            <div className="flex flex-row gap-2">
+              <Image
+                src="/calendar.svg"
+                width={22}
+                height={22}
+                alt="calendar"
+              />
+              <p>{formattedDate}</p>
+            </div>
+
+            <div className="flex flex-row gap-2 items-center">
+              <Image src="/star.svg" width={22} height={22} alt="star" />
+              <p>{feedback?.totalScore || "---"}/100</p>
+            </div>
+          </div>
+
+          {/* Feedback or Placeholder Text */}
+          <p className="line-clamp-2 mt-5">
+            {feedback?.finalAssessment ||
+              "You haven't taken this interview yet. Take it now to improve your skills."}
           </p>
         </div>
-      </div>
 
-      <div className="p-6 space-y-6">
-        {/* Content */}
-        <div>
-          <h3 className="text-xl font-semibold capitalize mb-2 text-light-100 group-hover:text-primary-100 transition-colors duration-300">
-            {role} Interview
-          </h3>
-          <div className="flex items-center gap-4 text-sm text-light-100/70">
-            <div className="flex items-center gap-2">
-              <Calendar className="w-4 h-4" />
-              <span>
-                {formattedDate} • {formattedTime}
-              </span>
-            </div>
-            {feedback && (
-              <div className="flex items-center gap-2">
-                <Star className="w-4 h-4 text-primary-200" />
-                <span className="font-medium">{feedback.totalScore}/100</span>
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* Assessment */}
-        <p className="line-clamp-2 text-sm text-light-100/80 min-h-[40px]">
-          {feedback?.finalAssessment ||
-            "You haven't taken the interview yet. Take it now to improve your skills."}
-        </p>
-
-        {/* Footer */}
-        <div className="flex items-center justify-between pt-4 border-t border-dark-200/50">
+        <div className="flex flex-row justify-between">
           <DisplayTechIcons techStack={techstack} />
-          <Button
-            className="btn-primary group/btn flex items-center gap-2 hover:gap-3 transition-all duration-300"
-            asChild
-          >
+
+          <Button className="btn-primary">
             <Link
               href={feedback ? `/interview/${id}/feedback` : `/interview/${id}`}
             >
-              <span>{feedback ? "View Feedback" : "Start Interview"}</span>
-              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
+              {feedback ? "Check Feedback" : "View Interview"}
             </Link>
           </Button>
         </div>
