@@ -127,7 +127,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
                   />
                 </div>
                 <h2 className="text-2xl font-bold bg-gradient-to-br from-white to-white/70 bg-clip-text text-transparent">
-                  Interviu
+                  Intervu
                 </h2>
               </div>
 
