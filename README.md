@@ -26,10 +26,7 @@ A TypeScript project built with modern tools and best practices to help you prep
 - [API Reference](#api-reference)  
 - [Development](#development)  
 - [Troubleshooting](#troubleshooting)  
-- [Contributing](#contributing)  
-- [License](#license)  
-- [Support](#support)  
-- [Acknowledgments](#acknowledgments)  
+
 
 ---
 
@@ -170,33 +167,5 @@ We welcome contributions! Please follow these steps:
 - Update documentation when adding or modifying features  
 - Keep commits atomic and descriptive  
 
----
-
-## 📄 License
-
-This project is licensed under the [MIT License](LICENSE).
 
 ---
-
-## 🆘 Support
-
-- 📧 Email: maintainer@example.com  
-- 🐛 Report issues: [GitHub Issues](https://github.com/tanbiralam/interviewPrepAgent/issues)  
-- 💬 Join discussions: [GitHub Discussions](https://github.com/tanbiralam/interviewPrepAgent/discussions)  
-- 📚 Read documentation: [Wiki](https://github.com/tanbiralam/interviewPrepAgent/wiki)  
-
----
-
-## 🙏 Acknowledgments
-
-- Thanks to all contributors who have helped improve this project  
-- Special thanks to the open source community  
-- Built with ❤️ using [TypeScript](https://github.com/tanbiralam/interviewPrepAgent)
-
----
-
-Made with ❤️ by [the community](https://github.com/tanbiralam/interviewPrepAgent)
-
----
-
-If you want, I can also help generate more detailed API docs or example usage sections!
